@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -13,6 +11,7 @@ public class InputManager : Singleton<InputManager> {
     public bool Sprint { get; private set; }
 
     public Action OnActionPress;
+    public Action OnUsePress;
 
     private void Update() {
         MovementInput();
@@ -31,6 +30,12 @@ public class InputManager : Singleton<InputManager> {
     private void CheckAction() {
         if (CrossPlatformInputManager.GetButtonDown("Action") && OnActionPress != null) {
             OnActionPress();
+        }
+    }
+
+    private void CheckUse() {
+        if (CrossPlatformInputManager.GetButtonDown("Fire1") && OnUsePress != null) {
+            OnUsePress();
         }
     }
 }
