@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5959900822606373423}
   - component: {fileID: 1401104046858009469}
   - component: {fileID: 7937059241592832005}
+  - component: {fileID: 5072114250802559225}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -64,15 +65,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9177104dbb9f634b9b01b884fb5ab8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  moveSpeed: 5
+  gravity: 30
+  gravityWhileJumping: 20
+  jumpSpeed: 8
   airSpeed: 0.5
-  maxSpeed: 1.5
-  crouchSpeedModifier: 0.5
-  sprintSpeedModifier: 1.5
-  jumpSpeed: 1
-  gravity: 9.81
-  jumpGravityModifier: 2
-  mass: 10
+--- !u!114 &5072114250802559225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65800840438362938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c406244969c07b4489cee53d7652c574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
 --- !u!1 &3324800500379732884
 GameObject:
   m_ObjectHideFlags: 0
