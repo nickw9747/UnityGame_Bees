@@ -2427,17 +2427,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1747884776863298989, guid: 059949baebc3e794982359e49e89b85e,
+    - target: {fileID: 7937059241592832005, guid: 059949baebc3e794982359e49e89b85e,
+        type: 3}
+      propertyPath: gravity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937059241592832005, guid: 059949baebc3e794982359e49e89b85e,
         type: 3}
       propertyPath: moveSpeed
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1747884776863298989, guid: 059949baebc3e794982359e49e89b85e,
-        type: 3}
-      propertyPath: gravity
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1747884776863298989, guid: 059949baebc3e794982359e49e89b85e,
+    - target: {fileID: 7937059241592832005, guid: 059949baebc3e794982359e49e89b85e,
         type: 3}
       propertyPath: jumpSpeed
       value: 100

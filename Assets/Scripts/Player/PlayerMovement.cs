@@ -13,38 +13,44 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float gravity;
     [SerializeField]
+    private float gravityWhileJumping;
+    [SerializeField]
     private float jumpSpeed;
 
-    private Vector3 moveDirection;
-
+    private Vector3 moveDirection = Vector3.zero;
 
     private void Awake() {
         characterController = GetComponent<CharacterController>();
     }
 
     private void Update() {
-        moveDirection = InputManager.Instance.MovementDirection;
+        moveDirection.x = InputManager.Instance.MovementDirection.x * moveSpeed;
+        moveDirection.z = InputManager.Instance.MovementDirection.z * moveSpeed;
 
-
-        if (!characterController.isGrounded) {
-            Fall();
-        } else if (InputManager.Instance.Jump) {
+        if (InputManager.Instance.Jump && characterController.isGrounded) {
             Jump();
         }
+        
+        ApplyGravity();
 
         ApplyMove();
     }
 
-    private void Fall() {
-        moveDirection.y = moveDirection.y - (gravity * Time.deltaTime);
+    private void ApplyGravity() {
+        if (InputManager.Instance.Jump && moveDirection.y >= 0.0f) {
+            moveDirection.y -= gravityWhileJumping * Time.deltaTime;
+        }
+        else {
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
     }
 
     private void ApplyMove() {
-        characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
+        characterController.Move(moveDirection * Time.deltaTime);
     }
 
     private void Jump() {
-        moveDirection.y = jumpSpeed * Time.deltaTime;
+        moveDirection.y = jumpSpeed;
     }
 
 }
