@@ -10,8 +10,8 @@ public class InputManager : Singleton<InputManager> {
     public bool Jump { get; private set; }
     public bool Sprint { get; private set; }
 
-    public Action OnActionPress;
-    public Action OnUsePress;
+    public Action OnActionPress = delegate { };
+    public Action OnUsePress = delegate { };
 
     private void Update() {
         MovementInput();

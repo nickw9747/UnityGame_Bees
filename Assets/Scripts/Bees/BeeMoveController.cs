@@ -16,7 +16,7 @@ public class BeeMoveController : MonoBehaviour {
     private float maxAngularSpeed = 10.0f;
 
     [SerializeField]
-    private float trackingDelay = 2.0f;
+    private float trackForSeconds = 2.0f;
     private float trackingTimer = 0.0f;
 
     private void Awake() {
@@ -24,13 +24,25 @@ public class BeeMoveController : MonoBehaviour {
     }
 
     private void Update() {
-        //trackingTimer += Time.deltaTime;
+        trackingTimer += Time.deltaTime;
         beeAgent.speed = maxSpeed;
         beeAgent.angularSpeed = maxAngularSpeed;
 
+        if (trackingTimer <= trackForSeconds) {
+            TrackTarget();
+        }
+        else {
+            ZoomToTarget();
+        }
+    }
+
+    private void TrackTarget() {
         if (!beeAgent.pathPending) {
             beeAgent.SetDestination(targetTransform.position);
-            //trackingTimer = 0.0f;
         }
+    }
+
+    private void ZoomToTarget() {
+
     }
 }

@@ -1692,8 +1692,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 828373223}
   maxSpeed: 2
-  maxAngularSpeed: 45
-  trackingDelay: 0.5
+  maxAngularSpeed: 180
+  trackForSeconds: 2
 --- !u!4 &1341352747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8980766309697864688, guid: 9a539e69b136e0d48bb509b371cb1e64,
@@ -1774,12 +1774,12 @@ PrefabInstance:
     - target: {fileID: 2387861909979099080, guid: c2504089cabbc5648a005807a6eb9ffb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.67
+      value: -1.54
       objectReference: {fileID: 0}
     - target: {fileID: 2387861909979099080, guid: c2504089cabbc5648a005807a6eb9ffb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2387861909979099080, guid: c2504089cabbc5648a005807a6eb9ffb,
         type: 3}
@@ -2582,7 +2582,7 @@ PrefabInstance:
     - target: {fileID: 2387861909979099080, guid: c2504089cabbc5648a005807a6eb9ffb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2387861909979099080, guid: c2504089cabbc5648a005807a6eb9ffb,
         type: 3}
