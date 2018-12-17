@@ -1691,7 +1691,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 828373223}
-  maxSpeed: 1
+  maxSpeed: 2
+  maxAngularSpeed: 45
+  trackingDelay: 0.5
 --- !u!4 &1341352747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8980766309697864688, guid: 9a539e69b136e0d48bb509b371cb1e64,
