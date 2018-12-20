@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 303924015}
   - component: {fileID: 303924014}
   - component: {fileID: 303924013}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -712,7 +712,7 @@ GameObject:
   - component: {fileID: 716850608}
   - component: {fileID: 716850607}
   - component: {fileID: 716850606}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1271,7 +1271,7 @@ GameObject:
   - component: {fileID: 1038392593}
   - component: {fileID: 1038392592}
   - component: {fileID: 1038392591}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1672,28 +1672,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a539e69b136e0d48bb509b371cb1e64, type: 3}
---- !u!1 &1305903232 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8095676529293517081, guid: 03c4fdaee9ced8f4dbf6dfe81eecae03,
-    type: 3}
-  m_PrefabInstance: {fileID: 8380881334517690220}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1305903233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305903232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90c1dfc0284ff8a47b7d2c0a0c4015a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTransform: {fileID: 828373223}
-  maxSpeed: 2
-  maxAngularSpeed: 180
-  trackForSeconds: 2
 --- !u!4 &1341352747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8980766309697864688, guid: 9a539e69b136e0d48bb509b371cb1e64,
@@ -1915,7 +1893,7 @@ GameObject:
   - component: {fileID: 1435422916}
   - component: {fileID: 1435422915}
   - component: {fileID: 1435422914}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2832,6 +2810,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1305903233, guid: 03c4fdaee9ced8f4dbf6dfe81eecae03, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 828373223}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03c4fdaee9ced8f4dbf6dfe81eecae03, type: 3}
 --- !u!1001 &8980766308214142609

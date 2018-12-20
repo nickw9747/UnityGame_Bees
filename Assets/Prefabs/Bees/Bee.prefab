@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3081120650754579480}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3005561133255317243}
   - component: {fileID: 3951397843661408057}
   - component: {fileID: 4878199857932312303}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 1437985119577393457}
   - component: {fileID: 925668621330735829}
   - component: {fileID: 6636206017656564805}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,8 @@ GameObject:
   - component: {fileID: 5120799653545067687}
   - component: {fileID: 2320605207769201351}
   - component: {fileID: 5768276182526692464}
-  m_Layer: 0
+  - component: {fileID: 1305903233}
+  m_Layer: 11
   m_Name: Bee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,6 +288,23 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
+--- !u!114 &1305903233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095676529293517081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c1dfc0284ff8a47b7d2c0a0c4015a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
+  maxSpeed: 2
+  maxAngularSpeed: 180
+  trackForSeconds: 2
+  zoomSpeed: 4
 --- !u!1 &8208394763219363826
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +317,7 @@ GameObject:
   - component: {fileID: 4749157152947501308}
   - component: {fileID: 4430359496333331826}
   - component: {fileID: 2664599033706816975}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
