@@ -278,10 +278,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 180
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -302,6 +302,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb151766fbcbc81428694406285973f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
+  turnSpeed: 8
+  aimTimer: 1.5
+  attackMoveSpeed: 6
 --- !u!114 &1305903233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,11 +318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c1dfc0284ff8a47b7d2c0a0c4015a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 2
-  maxAngularSpeed: 180
-  trackForSeconds: 1.5
-  zoomSpeed: 6
-  attackTurnSpeed: 8
 --- !u!114 &3172636108035381932
 MonoBehaviour:
   m_ObjectHideFlags: 0

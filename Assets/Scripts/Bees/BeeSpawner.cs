@@ -25,7 +25,7 @@ public class BeeSpawner : MonoBehaviour {
     private void SpawnBee() {
         Bee newBee = beePool.Get();
         newBee.gameObject.SetActive(true);
-        newBee.TargetTransform = target;
+        newBee.SetTarget(target);
     }
 
     private IEnumerator SpawnOnTimer() {
