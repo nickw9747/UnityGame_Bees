@@ -5,12 +5,12 @@ public class ObjectPool<T> where T : Component {
     
     public ObjectPool(T objectToPool, int preArmPoolSize, GameObject parentObject) {
         prefab = objectToPool;
-        initialPoolSize = preArmPoolSize;
         parent = parentObject;
+
+        AddNewToPool(preArmPoolSize);
     }
 
     private T prefab = null;
-    private int initialPoolSize = 5;
     private GameObject parent;
     private Queue<T> pool = new Queue<T>();
 
