@@ -14,12 +14,6 @@ public class LineOfSight : MonoBehaviour {
 
     public Action<GameObject> OnTargetInLineOfSight = delegate { };
 
-    //private void OnTriggerEnter(Collider other) {
-    //    if (other.gameObject == target) {
-    //        OnLineOfSightEnter(other.gameObject);
-    //    }
-    //}
-
     private void Update() {
         Collider[] collidersInRange = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
 

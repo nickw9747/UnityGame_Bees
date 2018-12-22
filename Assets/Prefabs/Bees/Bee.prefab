@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 5120799653545067687}
   - component: {fileID: 2320605207769201351}
   - component: {fileID: 5768276182526692464}
+  - component: {fileID: 8948312946543316921}
   - component: {fileID: 1305903233}
   - component: {fileID: 3172636108035381932}
   m_Layer: 11
@@ -289,6 +290,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
+--- !u!114 &8948312946543316921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095676529293517081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb151766fbcbc81428694406285973f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1305903233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,11 +314,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c1dfc0284ff8a47b7d2c0a0c4015a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTransform: {fileID: 0}
   maxSpeed: 2
   maxAngularSpeed: 180
-  trackForSeconds: 2
-  zoomSpeed: 4
+  trackForSeconds: 1.5
+  zoomSpeed: 6
   attackTurnSpeed: 8
 --- !u!114 &3172636108035381932
 MonoBehaviour:
@@ -319,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5735a32bf1ba8b4b8bac63fe212abea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 1.25
+  viewRadius: 3
   targetMask:
     serializedVersion: 2
     m_Bits: 1024

@@ -112,6 +112,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 1da54f2855d42494badc2be0ccae4c2f, type: 2}
+--- !u!1 &179656594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 179656596}
+  - component: {fileID: 179656595}
+  m_Layer: 0
+  m_Name: BeeSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &179656595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179656594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef820785d5b73d4497eeae4a202ff37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beePrefab: {fileID: 8948312946543316921, guid: 03c4fdaee9ced8f4dbf6dfe81eecae03,
+    type: 3}
+  target: {fileID: 828373223}
+  initialBeePoolSize: 5
+  spawn: 1
+  spawnTimer: 5
+--- !u!4 &179656596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179656594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5, y: 0, z: 1.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &186177577
 Mesh:
   m_ObjectHideFlags: 0
@@ -2755,6 +2804,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bee
       objectReference: {fileID: 0}
+    - target: {fileID: 8095676529293517081, guid: 03c4fdaee9ced8f4dbf6dfe81eecae03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5120799653545067687, guid: 03c4fdaee9ced8f4dbf6dfe81eecae03,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2814,11 +2868,11 @@ PrefabInstance:
       propertyPath: targetTransform
       value: 
       objectReference: {fileID: 828373223}
-    - target: {fileID: 3172636108035381932, guid: 03c4fdaee9ced8f4dbf6dfe81eecae03,
+    - target: {fileID: 8948312946543316921, guid: 03c4fdaee9ced8f4dbf6dfe81eecae03,
         type: 3}
-      propertyPath: viewRadius
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 828373223}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03c4fdaee9ced8f4dbf6dfe81eecae03, type: 3}
 --- !u!1001 &8980766308214142609
