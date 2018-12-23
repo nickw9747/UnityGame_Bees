@@ -1,30 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using System;
 
 public class BeeSpawner : MonoBehaviour {
 
     [SerializeField]
-    private Bee beePrefab = null;
-    [SerializeField]
     private Transform target = null;
     [SerializeField]
-    private int initialBeePoolSize = 5;
-    [SerializeField]
     private bool spawn = true;
+    private bool spawning = false;
     [SerializeField]
     private float spawnTimer = 5.0f;
 
-    private void Start() {
-        StartCoroutine(SpawnOnTimer());
+    private void Update() {
+        if (spawn && !spawning) {
+            StartCoroutine(SpawnAfterTimer());
+        }
     }
 
     private void SpawnBee() {
         Bee newBee = BeeObjectPool.Instance.Get();
+        newBee.TargetTransform = target;
+        newBee.transform.position = transform.position;
         newBee.gameObject.SetActive(true);
-        newBee.SetTarget(target);
-        newBee.transform.ResetTransform();
+        newBee.Patrol();
 
         newBee.OnDisableBee += ReturnBeeToPool;
     }
@@ -34,10 +32,12 @@ public class BeeSpawner : MonoBehaviour {
         BeeObjectPool.Instance.ReturnToPool(bee);
     }
 
-    private IEnumerator SpawnOnTimer() {
-        while (spawn) {
-            yield return new WaitForSeconds(spawnTimer);
+    private IEnumerator SpawnAfterTimer() {
+        spawning = true;
+        yield return new WaitForSeconds(spawnTimer);
+        if (spawn) {
             SpawnBee();
         }
+        spawning = false;
     }
 }
