@@ -8,11 +8,11 @@ public class DamageOnHit : MonoBehaviour
     [SerializeField]
     private int damage = 1;
 
-    private Action<Collider> OnDealtDamage = delegate { };
+    public Action<DamageOnHit, Collider> OnDealtDamage = delegate { };
 
     private void OnTriggerEnter(Collider colliderHit) {
         DealDamage(colliderHit);
-        OnDealtDamage(colliderHit);
+        OnDealtDamage(this, colliderHit);
     }
 
     private void DealDamage(Collider colliderHit) {

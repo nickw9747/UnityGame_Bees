@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 public class BeeSpawner : MonoBehaviour {
 
@@ -14,18 +16,22 @@ public class BeeSpawner : MonoBehaviour {
     [SerializeField]
     private float spawnTimer = 5.0f;
 
-    private ObjectPool<Bee> beePool;
-
     private void Start() {
-        beePool = new ObjectPool<Bee>(beePrefab, initialBeePoolSize, gameObject);
-
         StartCoroutine(SpawnOnTimer());
     }
 
     private void SpawnBee() {
-        Bee newBee = beePool.Get();
+        Bee newBee = BeeObjectPool.Instance.Get();
         newBee.gameObject.SetActive(true);
         newBee.SetTarget(target);
+        newBee.transform.ResetTransform();
+
+        newBee.OnDisableBee += ReturnBeeToPool;
+    }
+
+    private void ReturnBeeToPool(Bee bee) {
+        bee.OnDisableBee -= ReturnBeeToPool;
+        BeeObjectPool.Instance.ReturnToPool(bee);
     }
 
     private IEnumerator SpawnOnTimer() {

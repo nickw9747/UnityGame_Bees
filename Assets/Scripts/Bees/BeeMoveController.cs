@@ -33,4 +33,8 @@ public class BeeMoveController : MonoBehaviour {
     public void StopTracking() {
         beeAgent.enabled = false;
     }
+
+    public void StartTracking() {
+        beeAgent.enabled = true;
+    }
 }

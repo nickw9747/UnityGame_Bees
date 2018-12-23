@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class ObjectPool<T> where T : Component {
-    
-    public ObjectPool(T objectToPool, int preArmPoolSize, GameObject parentObject) {
-        prefab = objectToPool;
-        parent = parentObject;
+public class ObjectPool<T> : Singleton<ObjectPool<T>> where T : Component {
 
-        AddNewToPool(preArmPoolSize);
-    }
-
+    [SerializeField]
     private T prefab = null;
-    private GameObject parent;
+    [SerializeField]
+    private int initialPoolSize = 5;
+
     private Queue<T> pool = new Queue<T>();
+
+    private void Start() {
+        AddNewToPool(initialPoolSize);
+    }
 
     public T Get() {
         if (pool.Count == 0) {
@@ -28,7 +28,7 @@ public class ObjectPool<T> where T : Component {
 
     private void AddNewToPool(int count) {
         for (int i = 0; i < count; i++) {
-            T newObject = UnityEngine.Object.Instantiate(prefab, parent.transform);
+            T newObject = Instantiate(prefab, transform);
             newObject.gameObject.SetActive(false);
             pool.Enqueue(newObject);
         }

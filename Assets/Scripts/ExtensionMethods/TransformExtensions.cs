@@ -13,4 +13,10 @@ public static class TransformExtensions {
 
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
+
+    public static void ResetTransform(this Transform transform) {
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+        //transform.scale = Vector3.one;
+    }
 }

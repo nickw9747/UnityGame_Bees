@@ -15,7 +15,10 @@ public class Bee : MonoBehaviour {
 
     private BeeMoveController beeMoveController;
     private Rigidbody rb;
-    private LineOfSight los;
+    private LineOfSight lineOfSight;
+    private DamageOnHit damageOnHit;
+
+    public Action<Bee> OnDisableBee = delegate { };
 
     private BeeState beeState;
     public BeeState CurrentBeeState {
@@ -26,6 +29,10 @@ public class Bee : MonoBehaviour {
             if (value != beeState) {
                 beeState = value;
                 switch (value) {
+                    case BeeState.Patrolling:
+                        beeMoveController.StartTracking();
+                        rb.velocity = Vector3.zero;
+                        break;
                     case BeeState.Aiming:
                         StartCoroutine(AimTimer());
                         break;
@@ -42,23 +49,30 @@ public class Bee : MonoBehaviour {
     private void Awake() {
         rb = GetComponent<Rigidbody>();
         beeMoveController = GetComponent<BeeMoveController>();
-        los = GetComponent<LineOfSight>();
+        lineOfSight = GetComponent<LineOfSight>();
+        damageOnHit = GetComponent<DamageOnHit>();
     }
 
     private void OnEnable() {
         CurrentBeeState = BeeState.Patrolling;
 
-        los.OnTargetInLineOfSight += StartAiming;
+        lineOfSight.OnTargetInLineOfSight += StartAiming;
+        damageOnHit.OnDealtDamage += DealtDamage;
+    }
+
+    private void DealtDamage(DamageOnHit damageOnHit, Collider colliderHit) {
+        OnDisableBee(this);
     }
 
     private void OnDisable() {
-        los.OnTargetInLineOfSight -= StartAiming;
+        lineOfSight.OnTargetInLineOfSight -= StartAiming;
+        damageOnHit.OnDealtDamage -= DealtDamage;
     }
 
     private void StartAiming(GameObject target) {
         targetTransform = target.transform;
         beeMoveController.StopTracking();
-        los.OnTargetInLineOfSight -= StartAiming;
+        lineOfSight.OnTargetInLineOfSight -= StartAiming;
         CurrentBeeState = BeeState.Aiming;
     }
 
