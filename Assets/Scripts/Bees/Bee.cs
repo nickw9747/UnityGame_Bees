@@ -3,8 +3,7 @@ using System.Collections;
 using System;
 
 public class Bee : MonoBehaviour {
-    [SerializeField]
-    private Transform targetTransform = null;
+    public Transform TargetTransform { get; set; }
 
     [SerializeField]
     private float turnSpeed = 8.0f;
@@ -20,32 +19,6 @@ public class Bee : MonoBehaviour {
 
     public Action<Bee> OnDisableBee = delegate { };
 
-    private BeeState beeState;
-    public BeeState CurrentBeeState {
-        get {
-            return beeState;
-        }
-        set {
-            if (value != beeState) {
-                beeState = value;
-                switch (value) {
-                    case BeeState.Patrolling:
-                        beeMoveController.StartTracking();
-                        rb.velocity = Vector3.zero;
-                        break;
-                    case BeeState.Aiming:
-                        StartCoroutine(AimTimer());
-                        break;
-                    case BeeState.Attack:
-                        Attack();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
-
     private void Awake() {
         rb = GetComponent<Rigidbody>();
         beeMoveController = GetComponent<BeeMoveController>();
@@ -54,9 +27,7 @@ public class Bee : MonoBehaviour {
     }
 
     private void OnEnable() {
-        CurrentBeeState = BeeState.Patrolling;
-
-        lineOfSight.OnTargetInLineOfSight += StartAiming;
+        rb.velocity = Vector3.zero;
         damageOnHit.OnDealtDamage += DealtDamage;
     }
 
@@ -65,52 +36,49 @@ public class Bee : MonoBehaviour {
     }
 
     private void OnDisable() {
-        lineOfSight.OnTargetInLineOfSight -= StartAiming;
         damageOnHit.OnDealtDamage -= DealtDamage;
     }
 
-    private void StartAiming(GameObject target) {
-        targetTransform = target.transform;
-        beeMoveController.StopTracking();
-        lineOfSight.OnTargetInLineOfSight -= StartAiming;
-        CurrentBeeState = BeeState.Aiming;
-    }
-
-    private void Update() {
-        switch (CurrentBeeState) {
-            case BeeState.Patrolling:
-                beeMoveController.TrackTarget(targetTransform.position);
-                break;
-            case BeeState.Aiming:
-                transform.SmoothRotate(targetTransform.position, turnSpeed, y: false);
-                break;
-            case BeeState.Attack:
-                break;
-            case BeeState.Attacking:
-                break;
-            default:
-                break;
-        }
+    private void StartAiming() {
+        beeMoveController.DisableTracking();
+        StartCoroutine(AimAtTarget());
     }
 
     private void Attack() {
         rb.velocity = transform.forward * attackMoveSpeed;
-        CurrentBeeState = BeeState.Attacking;
     }
 
-    private IEnumerator AimTimer() {
-        yield return new WaitForSeconds(aimTimer);
-        CurrentBeeState = BeeState.Attack;
+    public void Patrol() {
+        beeMoveController.EnableTracking();
+        StartCoroutine(PatrolUntilTargetDetected());
     }
 
-    public void SetTarget(Transform target) {
-        targetTransform = target;
-    }
-}
+    private IEnumerator AimAtTarget() {
+        float timer = 0.0f;
+        while (timer <= aimTimer) {
+            transform.SmoothRotate(TargetTransform.position, turnSpeed, y: false);
+            timer += Time.deltaTime;
+            yield return null;
+        }
 
-public enum BeeState {
-    Patrolling,
-    Aiming,
-    Attack,
-    Attacking
+        Attack();
+    }
+
+    private IEnumerator PatrolUntilTargetDetected() {
+        bool targetDetected = false;
+        lineOfSight.OnTargetInLineOfSight += TargetFound;
+
+        void TargetFound(GameObject target) {
+            targetDetected = true;
+            TargetTransform = target.transform;
+            lineOfSight.OnTargetInLineOfSight -= TargetFound;
+        }
+
+        while (!targetDetected) {
+            beeMoveController.TrackTarget(TargetTransform.position);
+            yield return null;
+        }
+
+        StartAiming();
+    }
 }
