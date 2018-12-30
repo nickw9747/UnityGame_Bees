@@ -52,17 +52,67 @@ public class StateControllerEditor : Editor {
 
                 EditorGUILayout.Space();
 
-                EditorGUILayout.PropertyField(transitionBranchesProp, includeChildren: true);
+                TransitionsBranchLayout(transitionBranchesProp);
+
+                //EditorGUILayout.PropertyField(transitionBranchesProp, includeChildren: true);
 
                 EditorGUILayout.Space();
                 if (GUILayout.Button("Delete State")) {
                     DeleteState(i);
                 }
-                
             }
 
             EditorGUI.indentLevel--;
             EditorGUILayout.EndVertical();
+        }
+    }
+
+    private void TransitionsBranchLayout(SerializedProperty transitionBranchesProp) {
+        for (int i = 0; i < transitionBranchesProp.arraySize; i++) {
+            SerializedProperty transitionBranchProp = transitionBranchesProp.GetArrayElementAtIndex(i);
+            SerializedProperty transitionsProp = transitionBranchProp.FindPropertyRelative("transitions");
+            SerializedProperty nextStateIndexProp = transitionBranchProp.FindPropertyRelative("nextStateIndex");
+
+            EditorGUILayout.BeginVertical(GUI.skin.box);
+
+            EditorGUILayout.BeginHorizontal();
+
+            EditorGUILayout.BeginVertical();
+
+            for (int j = 0; j < transitionsProp.arraySize; j++) {
+                EditorGUILayout.BeginHorizontal();
+
+                var transitionProp = transitionsProp.GetArrayElementAtIndex(j);
+
+                EditorGUILayout.PropertyField(transitionProp, GUIContent.none);
+
+                if (GUILayout.Button("-")) {
+                    transitionsProp.DeleteArrayElementAtIndex(j);
+                }
+                
+                EditorGUILayout.EndHorizontal();
+            }
+
+            if (GUILayout.Button("New transition")) {
+                transitionsProp.InsertArrayElementAtIndex(transitionsProp.arraySize);
+            }
+
+            EditorGUILayout.EndVertical();
+
+            EditorGUILayout.PropertyField(nextStateIndexProp);
+
+            EditorGUILayout.EndHorizontal();
+
+            if (GUILayout.Button("Remove transition branch")) {
+                transitionBranchesProp.DeleteArrayElementAtIndex(i);
+            }
+
+            EditorGUILayout.EndVertical();
+
+        }
+
+        if (GUILayout.Button("Add new transition branch")) {
+            transitionBranchesProp.InsertArrayElementAtIndex(transitionBranchesProp.arraySize);
         }
     }
 

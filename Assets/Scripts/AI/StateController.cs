@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -35,6 +37,20 @@ public class StateController : MonoBehaviour {
                 if (transition.CheckTransition(this)) {
                     TransitionState(transitionBranch.nextStateIndex);
                 }
+            }
+        }
+    }
+
+    public void OnDrawGizmos() {
+        if (EditorApplication.isPlaying) {
+            DrawTransitionGizmos();
+        }
+    }
+
+    private void DrawTransitionGizmos() {
+        foreach (var transitionBranch in activeStateTree.transitionBranches) {
+            foreach (var transition in transitionBranch.transitions) {
+                transition.TransitionGizmo(this);
             }
         }
     }

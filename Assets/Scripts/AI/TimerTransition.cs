@@ -16,6 +16,12 @@ public class TimerTransition : Transition {
         return false;
     }
 
+    public override void TransitionGizmo(StateController controller) {
+        float remainingTime = time - elapsedTime;
+
+        remainingTime.ToString().DrawStringInScene(controller.transform.position, Color.white);
+    }
+
     private void OnEnable() {
         elapsedTime = 0;
     }

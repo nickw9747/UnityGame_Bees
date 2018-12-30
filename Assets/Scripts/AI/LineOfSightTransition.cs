@@ -11,6 +11,9 @@ public class LineOfSightTransition : Transition {
     [SerializeField]
     private LayerMask obstacleMask = 1;
 
+    [SerializeField]
+    private Color gizmoColour = Color.blue;
+
     public override bool CheckTransition(StateController controller) {
         Collider[] collidersInRange = Physics.OverlapSphere(controller.transform.position, viewRadius, targetMask);
 
@@ -24,5 +27,10 @@ public class LineOfSightTransition : Transition {
 
         return false;
         
+    }
+
+    public override void TransitionGizmo(StateController controller) {
+        Gizmos.color = gizmoColour;
+        Gizmos.DrawWireSphere(controller.transform.position, viewRadius);
     }
 }
